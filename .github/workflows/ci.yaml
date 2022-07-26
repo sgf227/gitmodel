@@ -1,0 +1,27 @@
+name: sgf-react-datawhale
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+      - name: Install and Build
+        run: |
+          npm install
+          npm run-script build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.SGF }} # 刚才配置的Repository secret，secrets后的名称与刚才配置的名称一致。
+          BRANCH: gh-pages # 目标分支
+          FOLDER: build # 静态页面所在当前仓库的目录
+          REPOSITORY_NAME: sgf227/sgf-react-datawhale # 目标仓库
+          GIT_CONFIG_NAME: sgf227 # github用户名
+          GIT_CONFIG_EMAIL: 1265968629@qq.com # github邮箱
+          CLEAN: true
