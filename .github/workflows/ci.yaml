@@ -2,7 +2,7 @@ name: gitmodel # 项目名称
 on:
     push:
         branches:
-            - master # 自动部署触发方式：提交代码到master分支
+            - main # 自动部署触发方式：提交代码到main分支
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
