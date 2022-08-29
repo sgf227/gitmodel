@@ -14,8 +14,7 @@
             "jsx": true
         },
         "project": [
-            "./tsconfig.json",
-            "./gitmodel/tsconfig.json"
+            "./tsconfig.json"
         ],
         "ecmaVersion": 12,
         // "ecmaVersion": "latest",
