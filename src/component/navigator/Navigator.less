@@ -1,0 +1,39 @@
+.navigator {
+  margin-top: 4px;
+  /* stylelint-disable-next-line comment-empty-line-before */
+  /* 清除浮动对高度的影响 */
+  overflow: hidden;
+  border-bottom: 1px solid #f0f0f0;
+  box-shadow: none;
+
+  &-left {
+    float: left;
+    width: 17%;
+    height: 56px;
+    color: #409eff;
+    font-size: 24px;
+    line-height: 56px;
+    text-align: center;
+  }
+
+  &-center {
+    float: left;
+    width: 60%;
+  }
+
+  &-right {
+    float: left;
+    width: 17%;
+    height: 56px;
+    font-size: 24px;
+    line-height: 56px;
+    text-align: center;
+
+    &-logo {
+      width: 24px;
+      height: 24px;
+      margin: 18px 24px;
+      cursor: pointer;
+    }
+  }
+}

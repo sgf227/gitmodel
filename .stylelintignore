@@ -1,0 +1,7 @@
+node_modules/**/*
+# src/assets/**/*
+dist/**/*
+build/**/*
+**/typings/**/*
+src/assets/**/*.css
+projects/common/assets/**/*.css
