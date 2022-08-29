@@ -2,7 +2,7 @@ name: gitmodel # 项目名称
 on:
     push:
         branches:
-            - main # 自动部署触发方式：提交代码到main分支
+            - main-bak # 自动部署触发方式：提交代码到main分支,暂时取消自动部署，，后面将main-bak改为main即可
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
