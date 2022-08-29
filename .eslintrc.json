@@ -13,10 +13,7 @@
         "ecmaFeatures": {
             "jsx": true
         },
-        "project": [
-            "./tsconfig.json",
-            "gitmodel/tsconfig.json"
-        ],
+        "project": "./tsconfig.json",
         "ecmaVersion": 12,
         // "ecmaVersion": "latest",
         "sourceType": "module"
