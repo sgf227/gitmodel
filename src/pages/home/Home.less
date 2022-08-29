@@ -1,0 +1,106 @@
+.home {
+    width: 100%;
+    height: 100%;
+
+    .carousel {
+        width: 90%;
+        margin: 30px 5%;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: row;
+        flex-grow: 0;
+        align-items: flex-start;
+        justify-content: space-around;
+        width: 90%;
+        margin: 30px 5%;
+
+        &-big {
+            flex-direction: column;
+            justify-content: space-around;
+            width: 60%;
+
+            &-item {
+                display: flex;
+                flex-direction: row;
+                flex-grow: 0;
+                justify-content: space-around;
+                height: 150px;
+                margin: 16px 0;
+                padding: 8px 16px;
+                border-bottom: 1px solid #f0f0f0;
+                cursor: pointer;
+
+                &-image {
+                    width: 30%;
+                    height: 120px;
+                }
+
+                &-content {
+                    width: 65%;
+                    height: 120px;
+
+                    &-title {
+                        height: 25px;
+                        font-size: 18px;
+                        line-height: 25px;
+                    }
+
+                    &-description {
+                        height: 40px;
+                        margin-top: 10px;
+                        overflow: hidden;
+                        font-size: 14px;
+                        line-height: 20px;
+                    }
+
+                    &-tag {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: left;
+                        height: 28px;
+                        margin-top: 13px;
+
+                        &-item {
+                            margin-right: 4px;
+                            padding: 3px;
+                            color: #909399;
+                            line-height: 20px;
+                            background-color: #f4f4f5;
+                            border: 1px solid #e9e9eb;
+                            border-radius: 4px;
+                        }
+                    }
+                }
+
+
+            }
+
+        }
+
+        &-small {
+            width: 20%;
+
+            &-item {
+                width: 100%;
+                height: 70px;
+                margin: 10px 8px 4px;
+                text-align: left;
+                border-bottom: 1px solid #f0f0f0;
+
+
+                &-title {
+                    color: #1890ff;
+                    cursor: pointer;
+                }
+
+                &-time {
+                    color: #909399;
+                }
+            }
+        }
+    }
+
+
+}

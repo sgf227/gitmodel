@@ -1,46 +1,37 @@
-# Getting Started with Create React App
+# gitmodel 网站
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 一、技术选型
 
-## Available Scripts
+-   编程语言：typescript
+-   前端框架：react
+-   前端组件库：antd
+-   markdown-to-html 解析库：markdown-it
+-   部署方式：deploy
 
-In the project directory, you can run:
+## 二、目录结构
 
-### `npm start`
+| 文件目录       | 说明               |
+| -------------- | ------------------ |
+| ./README.md    | 说明文档           |
+| ./src          | 源代码             |
+| .github        | 自动部署 action    |
+| ./build        | 构建后代码         |
+| ./stylelintrc  | 规范样式文件       |
+| .eslintrc.json | 规范 ts,tsx 等文件 |
+| ./build        | 构建后代码         |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 三、开发指南
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+执行`git clone git@github.com:sgf227/sgf-react-datawhale.git` 命令把代码下载下来
+使用`npm install` 或 `yarn`命令安装依赖,暂时只能用
+使用`npm start`或`yarn start`命令把项目跑起来，访问`http://localhost:3000/sgf-react-datawhale`即可看到网站
+使用`npm build`命令进行打包
 
-### `npm test`
+## 四、部署指南
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+执行`npm run deploy`命令手动部署项目
+使用`git push`提交到 main 分支会自动部署项目（可通过修改.github/woekflows/ci.yaml 文件内容修改触发自动部署项目的方式）
 
-### `npm run build`
+## 五、后续 todo
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+-   文案、视频、评论、提问、答疑、加入我们、捐赠、意见反馈等等、直播等等
