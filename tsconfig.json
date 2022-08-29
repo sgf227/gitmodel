@@ -23,12 +23,10 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/*.js",
     "src/**/*.js",
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "./**/*"
   ],
   "exclude": [
     "node_modules"
