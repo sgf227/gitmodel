@@ -2,9 +2,8 @@ import React from 'react';
 import { Radio } from 'antd';
 import './Learn.less';
 import { useBeforeRender } from './../../utils/useUtils';
-import { reqProject, reqWeather } from 'src/api';
-import { AnyObj } from 'src/common/type';
-
+import { reqProject, reqWeather } from 'api';
+import { AnyObj } from 'common/type';
 export const Learn: React.FC = () => {
     const projectList = [
         {

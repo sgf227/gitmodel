@@ -1,6 +1,6 @@
 import { message } from 'antd';
+import { AnyObj, Callback } from 'common/type';
 import jsonp from 'jsonp';
-import { AnyObj, Callback } from 'src/common/type';
 // import { ajax } from './ajax';
 
 // const BASE = 'http://localhost:5000'

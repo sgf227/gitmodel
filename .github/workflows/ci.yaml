@@ -2,7 +2,7 @@ name: gitmodel # 项目名称
 on:
     push:
         branches:
-            - main-bak # 自动部署触发方式：提交代码到main分支,暂时取消自动部署，，后面将main-bak改为main即可
+            - main # 自动部署触发方式：提交代码到main分支
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
@@ -13,7 +13,7 @@ jobs:
                   persist-credentials: false
             - name: Install and Build
               run: |
-                  npm install
+                  yarn 
                   npm run-script build
             - name: Deploy
               uses: JamesIves/github-pages-deploy-action@3.7.1
