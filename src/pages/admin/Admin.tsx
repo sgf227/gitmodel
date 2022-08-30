@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigator } from '../../component/navigator/Navigator';
-import { Footer } from '../../component/footer/Footer';
+import { Foot } from '../../component/foot/Foot';
 import './Admin.less';
 // import { Home } from '../home/Home';
 import { Learn } from '../learn/Learn';
@@ -13,7 +13,7 @@ export const Admin: React.FC = () => {
                 {/* <Home /> */}
                 <Learn />
             </div>
-            <Footer />
+            <Foot />
         </>
     );
 };

@@ -4,7 +4,8 @@ import { Home } from './pages/home/Home';
 import { NotFound404 } from './pages/errorpages/ErrorPages';
 import { Learn } from './pages/learn/Learn';
 import { Navigator } from './component/navigator/Navigator';
-import { Footer } from './component/footer/Footer';
+import { Foot } from './component/foot/Foot';
+import { LearnDetail } from './pages/learn/learndetail/LearnDetail';
 
 const routes: RouteObject[] = [
     {
@@ -12,33 +13,24 @@ const routes: RouteObject[] = [
         children: [
             {
                 index: true,
-                element: (
-                    <>
-                        <Navigator />
-                        <Home />
-                        <Footer />
-                    </>
-                ),
+                element: <Home />,
             },
             {
                 path: 'home',
-                element: (
-                    <>
-                        <Navigator />
-                        <Home />
-                        <Footer />
-                    </>
-                ),
+                element: <Home />,
             },
             {
                 path: 'project',
-                element: (
-                    <>
-                        <Navigator />
-                        <Learn />
-                        <Footer />
-                    </>
-                ),
+                children: [
+                    {
+                        index: true,
+                        element: <Learn />,
+                    },
+                    {
+                        path: 'detail',
+                        element: <LearnDetail />,
+                    },
+                ],
             },
         ],
     },
@@ -48,7 +40,7 @@ const routes: RouteObject[] = [
             <>
                 <Navigator />,
                 <NotFound404 />,
-                <Footer />
+                <Foot />
             </>
         ),
     },

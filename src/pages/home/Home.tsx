@@ -1,16 +1,10 @@
 import React from 'react';
-import { Card, Carousel } from 'antd';
+import { Layout, Card, Carousel } from 'antd';
+import { Navigator } from '../../component/navigator/Navigator';
 import './Home.less';
 
 export const Home: React.FC = () => {
-    // const contentStyle: React.CSSProperties = {
-    //     height: '360px',
-    //     color: '#fff',
-    //     lineHeight: '360px',
-    //     textAlign: 'center',
-    //     background: '#364d79',
-    // };
-
+    const { Content, Footer, Header } = Layout;
     /** Carousel走马灯数据源     */
     const carouselList = [
         {
@@ -1220,53 +1214,61 @@ export const Home: React.FC = () => {
     ];
 
     return (
-        <div className="home">
-            <Carousel autoplay={false} dotPosition="bottom" className="carousel">
-                {carouselList.map((item, index) => (
-                    <div key={index} style={{ backgroundImage: item.url }}>
-                        <img
-                            src={item.url}
-                            width="90%"
-                            style={{
-                                color: '#fff',
-                                margin: '0 auto',
-                                background: '#364d79',
-                                display: 'block',
-                                height: '460px',
-                            }}
-                            alt=""
-                        />
-                    </div>
-                ))}
-            </Carousel>
-            <div className="card">
-                <Card className="card-big" title="热门学习" extra={<a href="#">查看更多</a>}>
-                    {cardList.map((item, index) => (
-                        <div key={index} className="card-big-item">
-                            <img src={item.imageUrl} className="card-big-item-image" alt="" />
-                            <div className="card-big-item-content">
-                                <div className="card-big-item-content-title">{item.name}</div>
-                                <div className="card-big-item-content-description">{item.description}</div>
-                                <div className="card-big-item-content-tag">
-                                    {item.tagList.map((tagItem, index) => (
-                                        <div key={tagItem.tagId} className="card-big-item-content-tag-item">
-                                            {tagItem.tagName}
-                                        </div>
-                                    ))}
-                                </div>
+        <Layout>
+            <Header className="header">
+                <Navigator />
+            </Header>
+            <Layout className="layout-inner">
+                <Content className="home">
+                    <Carousel autoplay={false} dotPosition="bottom" className="carousel">
+                        {carouselList.map((item, index) => (
+                            <div key={index} style={{ backgroundImage: item.url }}>
+                                <img
+                                    src={item.url}
+                                    width="90%"
+                                    style={{
+                                        color: '#fff',
+                                        margin: '0 auto',
+                                        background: '#364d79',
+                                        display: 'block',
+                                        height: '460px',
+                                    }}
+                                    alt=""
+                                />
                             </div>
-                        </div>
-                    ))}
-                </Card>
-                <Card className="card-small" title="参加活动" size="small">
-                    {activityList.map((item, index) => (
-                        <div key={index} className="card-small-item">
-                            <div className="card-small-item-title">{item.title}</div>
-                            <div className="card-small-item-time">{item.time}</div>
-                        </div>
-                    ))}
-                </Card>
-            </div>
-        </div>
+                        ))}
+                    </Carousel>
+                    <div className="card">
+                        <Card className="card-big" title="热门学习" extra={<a href="#">查看更多</a>}>
+                            {cardList.map((item, index) => (
+                                <div key={index} className="card-big-item">
+                                    <img src={item.imageUrl} className="card-big-item-image" alt="" />
+                                    <div className="card-big-item-content">
+                                        <div className="card-big-item-content-title">{item.name}</div>
+                                        <div className="card-big-item-content-description">{item.description}</div>
+                                        <div className="card-big-item-content-tag">
+                                            {item.tagList.map((tagItem, index) => (
+                                                <div key={tagItem.tagId} className="card-big-item-content-tag-item">
+                                                    {tagItem.tagName}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </Card>
+                        <Card className="card-small" title="参加活动" size="small">
+                            {activityList.map((item, index) => (
+                                <div key={index} className="card-small-item">
+                                    <div className="card-small-item-title">{item.title}</div>
+                                    <div className="card-small-item-time">{item.time}</div>
+                                </div>
+                            ))}
+                        </Card>
+                    </div>
+                </Content>
+            </Layout>
+            <Footer className="footer">Ant Design ©2018 Created by Ant UED</Footer>
+        </Layout>
     );
 };

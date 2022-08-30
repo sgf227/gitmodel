@@ -1,8 +1,8 @@
 import React from 'react';
 import 'antd/dist/antd.min.css';
-import './Footer.less';
+import './Foot.less';
 
-export const Footer: React.FC = () => {
+export const Foot: React.FC = () => {
     return (
         <div className="footer">
             <p className="copyright">

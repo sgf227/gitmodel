@@ -1,10 +1,15 @@
 import React from 'react';
-import { Radio } from 'antd';
+import { Layout, Radio } from 'antd';
 import './Learn.less';
+import '../../common/common.less';
 import { useBeforeRender } from './../../utils/useUtils';
 import { reqProject, reqWeather } from 'api';
 import { AnyObj } from 'common/type';
+import { useNavigate } from 'react-router-dom';
+import { Navigator } from '../../component/navigator/Navigator';
 export const Learn: React.FC = () => {
+    const { Content, Footer, Header } = Layout;
+    const navigate = useNavigate();
     const projectList = [
         {
             id: 0,
@@ -1254,37 +1259,52 @@ export const Learn: React.FC = () => {
     /** 项目点击事件 */
     const handleLearnItemClick = (item: AnyObj<any>): any => {
         console.log('click', item);
+        navigate(`/project/detail`, {
+            state: {
+                learnId: '0',
+                chapterId: '204',
+                detailList: item.detailList,
+            },
+        });
     };
 
     return (
-        <div className="learn">
-            <div className="ratio">
-                <Radio.Group defaultValue="a" buttonStyle="solid">
-                    {tagList.map((item, index) => (
-                        <Radio.Button value={item.tagId} key={index}>
-                            {item.name}
-                        </Radio.Button>
-                    ))}
-                </Radio.Group>
-            </div>
-            <div className="project">
-                {projectList.map((item, index) => (
-                    <div key={index} onClick={() => handleLearnItemClick(item)} className="project-item">
-                        <img src={item.imageUrl} className="project-item-image" alt="" />
-                        <div className="project-item-content">
-                            <div className="project-item-content-title">{item.name}</div>
-                            <div className="project-item-content-description">{item.description}</div>
-                            <div className="project-item-content-tag">
-                                {item.tagList.map((tagItem, index) => (
-                                    <div key={tagItem.tagId} className="project-item-content-tag-item">
-                                        {tagItem.tagName}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+        <Layout>
+            <Header className="header">
+                <Navigator />
+            </Header>
+            <Layout className="layout-inner">
+                <Content className="learn">
+                    <div className="ratio">
+                        <Radio.Group defaultValue="a" buttonStyle="solid">
+                            {tagList.map((item, index) => (
+                                <Radio.Button value={item.tagId} key={index}>
+                                    {item.name}
+                                </Radio.Button>
+                            ))}
+                        </Radio.Group>
                     </div>
-                ))}
-            </div>
-        </div>
+                    <div className="project">
+                        {projectList.map((item, index) => (
+                            <div key={index} onClick={() => handleLearnItemClick(item)} className="project-item">
+                                <img src={item.imageUrl} className="project-item-image" alt="" />
+                                <div className="project-item-content">
+                                    <div className="project-item-content-title">{item.name}</div>
+                                    <div className="project-item-content-description">{item.description}</div>
+                                    <div className="project-item-content-tag">
+                                        {item.tagList.map((tagItem, index) => (
+                                            <div key={tagItem.tagId} className="project-item-content-tag-item">
+                                                {tagItem.tagName}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </Content>
+            </Layout>
+            <Footer className="footer">Ant Design ©2018 Created by Ant UED</Footer>
+        </Layout>
     );
 };

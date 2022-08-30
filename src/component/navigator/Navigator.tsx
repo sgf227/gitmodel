@@ -13,7 +13,6 @@ import React, { useState } from 'react';
 import 'antd/dist/antd.min.css';
 import './Navigator.less';
 import { useAfterRender, useBeforeRender } from '../../utils/useUtils';
-import { RegularReg } from './../../common/regularReg';
 import { useNavigate } from 'react-router-dom';
 
 export const Navigator: React.FC = () => {
@@ -85,11 +84,7 @@ export const Navigator: React.FC = () => {
 
     /** 刷新时选中路由对应的导航栏的那项 */
     const setCurrentByUrl = (): any => {
-        const reg = new RegExp(RegularReg.lastPathname);
-        if (window.location.pathname.match(reg)?.[0] !== undefined) {
-            setCurrent(window.location.pathname.match(reg)?.[0] as string);
-            navigate(window.location.pathname);
-        }
+        setCurrent(window.location.pathname.split('/')[1]);
     };
 
     const onClick = (e: { keyPath: any; key: React.SetStateAction<string> }): void => {
