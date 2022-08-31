@@ -9116,7 +9116,7 @@
     "picocolors" "^0.2.1"
     "source-map" "^0.6.1"
 
-"postcss@^8.3.11", "postcss@^8.3.5", "postcss@^8.4.14", "postcss@^8.4.16", "postcss@^8.4.4", "postcss@^8.4.7":
+"postcss@^8.2.14", "postcss@^8.3.11", "postcss@^8.3.5", "postcss@^8.4.14", "postcss@^8.4.16", "postcss@^8.4.4", "postcss@^8.4.7":
   "integrity" "sha512-ipHE1XBvKzm5xI7hiHCZJCSugxvsdq2mPnsq5+UF+VHCjiBvtDrlxJfMBToWaP9D5XlgNmcFGqoHmUn0EYEaRQ=="
   "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.4.16.tgz"
   "version" "8.4.16"
@@ -10131,6 +10131,17 @@
     "convert-source-map" "^1.7.0"
     "loader-utils" "^2.0.0"
     "postcss" "^7.0.35"
+    "source-map" "0.6.1"
+
+"resolve-url-loader@^5.0.0":
+  "integrity" "sha512-uZtduh8/8srhBoMx//5bwqjQ+rfYOUq8zC9NrMUGtjBiGTtFJM42s58/36+hTqeqINcnYe08Nj3LkK9lW4N8Xg=="
+  "resolved" "https://registry.npmjs.org/resolve-url-loader/-/resolve-url-loader-5.0.0.tgz"
+  "version" "5.0.0"
+  dependencies:
+    "adjust-sourcemap-loader" "^4.0.0"
+    "convert-source-map" "^1.7.0"
+    "loader-utils" "^2.0.0"
+    "postcss" "^8.2.14"
     "source-map" "0.6.1"
 
 "resolve-url@^0.2.1":

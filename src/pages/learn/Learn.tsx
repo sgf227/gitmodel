@@ -6,7 +6,7 @@ import { useBeforeRender } from './../../utils/useUtils';
 import { reqProject, reqWeather } from 'api';
 import { AnyObj } from 'common/type';
 import { useNavigate } from 'react-router-dom';
-import { Navigator } from '../../component/navigator/Navigator';
+import { Navigator } from './../../component/navigator/Navigator';
 export const Learn: React.FC = () => {
     const { Content, Footer, Header } = Layout;
     const navigate = useNavigate();

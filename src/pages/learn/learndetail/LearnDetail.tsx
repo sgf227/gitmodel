@@ -1,16 +1,19 @@
-import { Layout } from 'antd';
+import { Anchor, Layout, Menu, Timeline } from 'antd';
 import Sider from 'antd/lib/layout/Sider';
 import { Navigator } from '../../../component/navigator/Navigator';
 import { AnyObj } from 'common/type';
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useBeforeRender, useAfterRender } from 'utils/useUtils';
 import './LearnDetail.less';
 import '../../../common/common.less';
 
 export const LearnDetail: React.FC = () => {
-    const location: AnyObj<any> = useLocation();
     const { Content, Footer, Header } = Layout;
+    const location: AnyObj<any> = useLocation();
+    const [menuItems, setMenuItems] = useState([]); // 左侧Menu数据
+    const [current, setCurrent] = useState(''); // 左侧Menu数据选中的key
+
     const data = {
         status: 200,
         data: {
@@ -23,15 +26,32 @@ export const LearnDetail: React.FC = () => {
         message: 'success',
     };
 
+    const getCurrentAnchor = (): any => '#components-anchor-demo-static';
+
     useBeforeRender(() => {
         console.log('useBeforeRender');
         console.log(location);
         console.log(data);
-        console.log(location.state.detailList);
+        initMenuItems();
     });
     useAfterRender(() => {
         console.log('useAfterRender');
     });
+
+    /** 左侧Menu点击事件 */
+    const onMenuClick = (e: { key: React.SetStateAction<string> }): void => {
+        setCurrent(e.key);
+    };
+
+    /** 初始化左侧Menu数据 */
+    const initMenuItems = (): any => {
+        if (location.state?.detailList === undefined) return;
+        const menuData = location.state.detailList.map((item: { chapterId: any; title: any }) => {
+            const data = { key: item.chapterId, label: item.title };
+            return data;
+        });
+        setMenuItems(menuData);
+    };
     return (
         <Layout>
             <Header className="header">
@@ -39,16 +59,34 @@ export const LearnDetail: React.FC = () => {
             </Header>
             <Layout hasSider className="layout-inner">
                 <Sider
+                    theme="light"
                     style={{
-                        height: '100vh',
+                        height: '85vh',
                         position: 'fixed',
+                        overflow: 'auto',
                     }}
-                ></Sider>
-                <Content>
-                    <div className="site-layout-background" style={{ textAlign: 'center', height: '100vh' }}>
-                        <div style={{ height: '400px', backgroundColor: 'pink' }}></div>
-                        <div style={{ height: '400px', backgroundColor: 'deeppink' }}></div>
-                        <div style={{ height: '400px', backgroundColor: 'blue' }}></div>
+                >
+                    <Menu onClick={onMenuClick} selectedKeys={[current]} mode="inline" theme="light" items={menuItems} />
+                </Sider>
+                <Content className="learn-detail">
+                    <div className="learn-detail-content"></div>
+                    <div className="learn-detail-anchor">
+                        <Anchor affix={false} getCurrentAnchor={getCurrentAnchor}>
+                            <Timeline>
+                                <Timeline.Item>
+                                    <a>Create a services site 2015-09-01</a>
+                                </Timeline.Item>
+                                <Timeline.Item>
+                                    <a>Solve initial network problems 2015-09-01</a>
+                                </Timeline.Item>
+                                <Timeline.Item>
+                                    <a>Technical testing 2015-09-01</a>
+                                </Timeline.Item>
+                                <Timeline.Item>
+                                    <a>Network problems being solved 2015-09-01</a>
+                                </Timeline.Item>
+                            </Timeline>
+                        </Anchor>
                     </div>
                 </Content>
             </Layout>
