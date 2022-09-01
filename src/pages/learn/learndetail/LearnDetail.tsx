@@ -2,17 +2,22 @@ import { Anchor, Layout, Menu, Timeline } from 'antd';
 import Sider from 'antd/lib/layout/Sider';
 import { Navigator } from '../../../component/navigator/Navigator';
 import { AnyObj } from 'common/type';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useBeforeRender, useAfterRender } from 'utils/useUtils';
 import './LearnDetail.less';
 import '../../../common/common.less';
+import { convertMarkdownToHtml } from 'utils/convertMarkdown';
 
 export const LearnDetail: React.FC = () => {
     const { Content, Footer, Header } = Layout;
     const location: AnyObj<any> = useLocation();
+    const inputRef: React.LegacyRef<HTMLDivElement> | undefined = React.createRef();
     const [menuItems, setMenuItems] = useState([]); // 左侧Menu数据
     const [current, setCurrent] = useState(''); // 左侧Menu数据选中的key
+    const [htmlContent, setHtmlContent] = useState(''); // markdown文档内容
+    const [tag, setTag] = useState(''); // tag内容
+    const [anchorList, setAnchorList] = useState<AnyObj<any>>([]); // tag内容
 
     const data = {
         status: 200,
@@ -26,17 +31,23 @@ export const LearnDetail: React.FC = () => {
         message: 'success',
     };
 
-    const getCurrentAnchor = (): any => '#components-anchor-demo-static';
-
     useBeforeRender(() => {
         console.log('useBeforeRender');
-        console.log(location);
-        console.log(data);
+        const { html, tag } = convertMarkdownToHtml(data.data.content);
+        setHtmlContent(html);
+        setTag(tag);
         initMenuItems();
     });
     useAfterRender(() => {
         console.log('useAfterRender');
     });
+
+    useEffect(() => {
+        if (tag !== '') {
+            console.log('tag=', tag);
+            generateAnchorList();
+        }
+    }, [tag]);
 
     /** 左侧Menu点击事件 */
     const onMenuClick = (e: { key: React.SetStateAction<string> }): void => {
@@ -46,12 +57,32 @@ export const LearnDetail: React.FC = () => {
     /** 初始化左侧Menu数据 */
     const initMenuItems = (): any => {
         if (location.state?.detailList === undefined) return;
-        const menuData = location.state.detailList.map((item: { chapterId: any; title: any }) => {
-            const data = { key: item.chapterId, label: item.title };
+        const menuData = location.state.detailList.map((item: { chapterId: string; title: any }) => {
+            const data = { key: `${item.chapterId}`, label: item.title };
             return data;
         });
         setMenuItems(menuData);
+        setCurrent(menuData[0].key); // 默认选中第一个章节
     };
+    /** 生成Anchor锚点列表 */
+    const generateAnchorList = (): any => {
+        const output: AnyObj<any> = [];
+        console.log(inputRef.current, tag);
+        const elementList: HTMLCollectionOf<Element> | undefined = inputRef.current?.getElementsByTagName(tag);
+        if (elementList !== undefined && elementList.length > 0) {
+            for (let a = 0; a < elementList.length; a++) {
+                const element = elementList[a];
+                const elementContent = element.textContent;
+                output.push({
+                    href: `#${(element.parentNode as HTMLDivElement).id}`,
+                    name: elementContent,
+                });
+            }
+        }
+        console.log(output);
+        setAnchorList(output);
+    };
+
     return (
         <Layout>
             <Header className="header">
@@ -69,22 +100,15 @@ export const LearnDetail: React.FC = () => {
                     <Menu onClick={onMenuClick} selectedKeys={[current]} mode="inline" theme="light" items={menuItems} />
                 </Sider>
                 <Content className="learn-detail">
-                    <div className="learn-detail-content"></div>
+                    <div className="learn-detail-content" dangerouslySetInnerHTML={{ __html: htmlContent }} ref={inputRef}></div>
                     <div className="learn-detail-anchor">
-                        <Anchor affix={false} getCurrentAnchor={getCurrentAnchor}>
+                        <Anchor affix={true}>
                             <Timeline>
-                                <Timeline.Item>
-                                    <a>Create a services site 2015-09-01</a>
-                                </Timeline.Item>
-                                <Timeline.Item>
-                                    <a>Solve initial network problems 2015-09-01</a>
-                                </Timeline.Item>
-                                <Timeline.Item>
-                                    <a>Technical testing 2015-09-01</a>
-                                </Timeline.Item>
-                                <Timeline.Item>
-                                    <a>Network problems being solved 2015-09-01</a>
-                                </Timeline.Item>
+                                {anchorList.map((item, index) => (
+                                    <Timeline.Item key={index}>
+                                        <a href={item.href}>{item.name}</a>
+                                    </Timeline.Item>
+                                ))}
                             </Timeline>
                         </Anchor>
                     </div>
